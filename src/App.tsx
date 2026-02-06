@@ -1,11 +1,17 @@
+import { useState } from 'react'
 import './App.css'
+import ResultLayout from './layout/ResultLayout'
+import SetupLayout from './layout/SetupLayout'
 
 function App() {
+  const [showResult, setShowResult] = useState(false)
+
   return (
     <>
-      <h1 className="font-bold">
-        Timezone planner
-      </h1>
+      {showResult ?
+        <ResultLayout /> :
+        <SetupLayout />
+      }
     </>
   )
 }
