@@ -5,12 +5,17 @@ import SetupLayout from './layout/SetupLayout'
 
 function App() {
   const [showResult, setShowResult] = useState(false)
+  const [cities, setCities] = useState <string[]>([])
+
+  const addCity = (city: string) => {
+    setCities([...cities, city])
+  }
 
   return (
     <>
       {showResult ?
         <ResultLayout /> :
-        <SetupLayout />
+        <SetupLayout addCity={addCity} />
       }
     </>
   )
