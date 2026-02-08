@@ -8,7 +8,8 @@ type CityInputProps = {
 const CityInput = ({addCity}: CityInputProps) => {
   const [city, setCity] = useState("")
 
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
     addCity(city);
     setCity("")
   }

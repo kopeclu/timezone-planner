@@ -15,7 +15,7 @@ function App() {
     <>
       {showResult ?
         <ResultLayout /> :
-        <SetupLayout addCity={addCity} />
+        <SetupLayout addCity={addCity} cities={cities} />
       }
     </>
   )
