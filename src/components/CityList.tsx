@@ -1,11 +1,13 @@
 import type { CityInfo } from "../types";
 import { getFlagUrl } from "../utils/searchHelper";
+import { CloseIcon } from "./icons/CloseIcon";
 
 type CityListProps = {
-  cities: CityInfo[]
+  cities: CityInfo[],
+  removeCity: (city: CityInfo) => void
 }
 
-const CityList = ({cities}: CityListProps) => {
+const CityList = ({cities, removeCity}: CityListProps) => {
   return (
     <>
       {cities.map((el) => (
@@ -14,6 +16,9 @@ const CityList = ({cities}: CityListProps) => {
             {el.name} - {el.timeZone}
           </span>
           <img src={getFlagUrl(el.country)} alt="" />
+          <button onClick={() => removeCity(el)}>
+            <CloseIcon size={16} color="red" />
+          </button>
         </div>
       ))}
     </>

@@ -4,14 +4,15 @@ import type { CityInfo } from "../types";
 
 type SetupLayoutProps = {
   addCity: (city: CityInfo) => void,
-  cities: CityInfo[]
+  cities: CityInfo[],
+  removeCity: (city: CityInfo) => void
 }
 
-const SetupLayout = ({addCity, cities}: SetupLayoutProps) => {
+const SetupLayout = ({addCity, cities, removeCity}: SetupLayoutProps) => {
   return (
     <>
       <CityInput addCity={addCity} />
-      <CityList cities={cities} />
+      <CityList cities={cities} removeCity={removeCity} />
     </>
   );
 }

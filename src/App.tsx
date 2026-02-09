@@ -12,11 +12,16 @@ function App() {
     setCities([...cities, city])
   }
 
+  const removeCity = (city: CityInfo): void => {
+    const newCities = cities.filter((c) => c.name !== city.name)
+    setCities(newCities)
+  }
+
   return (
     <>
       {showResult ?
         <ResultLayout /> :
-        <SetupLayout addCity={addCity} cities={cities} />
+        <SetupLayout addCity={addCity} cities={cities} removeCity={removeCity} />
       }
     </>
   )
