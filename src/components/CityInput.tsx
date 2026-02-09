@@ -1,5 +1,5 @@
-import cities from 'cities.json' with { type: 'json' }
 import { useState } from 'react';
+import { validateInput } from '../utils/searchHelper';
 
 type CityInputProps = {
   addCity: (city: string) => void
@@ -8,10 +8,19 @@ type CityInputProps = {
 const CityInput = ({addCity}: CityInputProps) => {
   const [city, setCity] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault()
+    if (!validateInput(city))
+      return // + show error input
     addCity(city);
     setCity("")
+  }
+
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    setCity(e.target.value)
+    if (city.length > 2){
+      // show hint
+    }
   }
   
   return (
