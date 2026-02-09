@@ -1,5 +1,7 @@
 import { useState } from 'react';
-import { validateInput } from '../utils/searchHelper';
+import { getSuggestions, validateInput } from '../utils/searchHelper';
+import type { City } from '../types';
+import SuggestionList from './SuggestionList';
 
 type CityInputProps = {
   addCity: (city: string) => void
@@ -7,19 +9,31 @@ type CityInputProps = {
 
 const CityInput = ({addCity}: CityInputProps) => {
   const [city, setCity] = useState("")
+  const [suggestions, setSuggestions] = useState <City[]>([])
+  const [showSuggestions, setShowSuggestions] = useState(false)
+
+  const submitCity = (cityName: string): void => {
+    if (!validateInput(cityName))
+      return // + show error input
+    addCity(cityName);
+    setCity("")
+    setShowSuggestions(false)
+  }
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault()
-    if (!validateInput(city))
-      return // + show error input
-    addCity(city);
-    setCity("")
+    submitCity(city)
   }
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setCity(e.target.value)
-    if (city.length > 2){
-      // show hint
+    const newValue = e.target.value
+    setCity(newValue)
+
+    if (newValue.length > 0){
+      setShowSuggestions(true)
+      setSuggestions(getSuggestions(newValue))
+    } else {
+      setShowSuggestions(false)
     }
   }
   
@@ -30,12 +44,21 @@ const CityInput = ({addCity}: CityInputProps) => {
           type="text"
           placeholder="Add a city"
           value={city}
-          onChange={(e) => {setCity(e.target.value)}}
+          onChange={handleInput}
         />
         <button>
-          Find
+          Add
         </button>
       </form>
+      {
+        showSuggestions &&
+        <SuggestionList
+          suggestions={suggestions}
+          onSelect={(selectedCity: City) => {
+            submitCity(selectedCity.name)
+          }}  
+        />
+      }
     </>
   );
 }
