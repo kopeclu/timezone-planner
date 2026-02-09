@@ -6,3 +6,11 @@ export type City = {
   admin1: string,
   admin2: string
 }
+
+export type CityInfo = {
+  name: string,
+  lat: string,
+  lng: string,
+  timeZone: string,
+  country: string
+}

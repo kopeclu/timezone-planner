@@ -1,9 +1,10 @@
 import CityInput from "../components/CityInput";
 import CityList from "../components/CityList";
+import type { CityInfo } from "../types";
 
 type SetupLayoutProps = {
-  addCity: (city: string) => void,
-  cities: string[]
+  addCity: (city: CityInfo) => void,
+  cities: CityInfo[]
 }
 
 const SetupLayout = ({addCity, cities}: SetupLayoutProps) => {

@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { getSuggestions, validateInput } from '../utils/searchHelper';
-import type { City } from '../types';
+import { getSuggestions, getTimezoneInfo, validateInput } from '../utils/searchHelper';
+import type { City, CityInfo } from '../types';
 import SuggestionList from './SuggestionList';
 
 type CityInputProps = {
-  addCity: (city: string) => void
+  addCity: (city: CityInfo) => void
 }
 
 const CityInput = ({addCity}: CityInputProps) => {
@@ -12,17 +12,18 @@ const CityInput = ({addCity}: CityInputProps) => {
   const [suggestions, setSuggestions] = useState <City[]>([])
   const [showSuggestions, setShowSuggestions] = useState(false)
 
-  const submitCity = (cityName: string): void => {
-    if (!validateInput(cityName))
+  const submitCity = (cityToSubmit: City): void => {
+    if (!validateInput(cityToSubmit.name))
       return // + show error input
-    addCity(cityName);
+    const finalCityForm = getTimezoneInfo(cityToSubmit)
+    addCity(finalCityForm);
     setCity("")
     setShowSuggestions(false)
   }
 
   const handleSubmit = (e: React.SyntheticEvent): void => {
     e.preventDefault()
-    submitCity(city)
+    submitCity(suggestions[0])
   }
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -55,7 +56,7 @@ const CityInput = ({addCity}: CityInputProps) => {
         <SuggestionList
           suggestions={suggestions}
           onSelect={(selectedCity: City) => {
-            submitCity(selectedCity.name)
+            submitCity(selectedCity)
           }}  
         />
       }
