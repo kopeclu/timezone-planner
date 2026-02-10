@@ -14,3 +14,8 @@ export type CityInfo = {
   timeZone: string,
   country: string
 }
+
+export type TimeInterval = {
+  start: string,
+  end: string
+}
