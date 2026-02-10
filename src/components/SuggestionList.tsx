@@ -9,8 +9,8 @@ type SuggestionListProps = {
 const SuggestionList = ({suggestions, onSelect}: SuggestionListProps) => {
   return (
     <>
-      {suggestions.map((city) => (
-        <div key={city.name+city.lat} onClick={() => onSelect(city)}
+      {suggestions.map((city, index) => (
+        <div key={city.name+city.lat+index} onClick={() => onSelect(city)}
           className="flex flex-row">
           <span>
             {city.name} - {city.country}
