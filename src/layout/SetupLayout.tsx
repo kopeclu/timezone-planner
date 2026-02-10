@@ -1,5 +1,6 @@
 import CityInput from "../components/CityInput";
 import CityList from "../components/CityList";
+import WorldMap from "../components/WorldMap";
 import type { CityInfo } from "../types";
 
 type SetupLayoutProps = {
@@ -13,6 +14,7 @@ const SetupLayout = ({addCity, cities, removeCity}: SetupLayoutProps) => {
     <>
       <CityInput addCity={addCity} />
       <CityList cities={cities} removeCity={removeCity} />
+      <WorldMap />
     </>
   );
 }
