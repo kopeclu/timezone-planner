@@ -14,7 +14,7 @@ const SetupLayout = ({addCity, cities, removeCity}: SetupLayoutProps) => {
     <>
       <CityInput addCity={addCity} />
       <CityList cities={cities} removeCity={removeCity} />
-      <WorldMap />
+      <WorldMap  cities={cities} />
     </>
   );
 }
