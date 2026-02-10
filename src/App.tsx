@@ -8,7 +8,9 @@ function App() {
   const [showResult, setShowResult] = useState(false)
   const [cities, setCities] = useState <CityInfo[]>([])
 
-  const addCity = (city: CityInfo) => {
+  const addCity = (city: CityInfo): void => {
+    if (cities.find((el) => el.name === city.name))
+      return
     setCities([...cities, city])
   }
 
