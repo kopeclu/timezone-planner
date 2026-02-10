@@ -18,12 +18,12 @@ function App() {
   }
 
   return (
-    <>
+    <div className="flex flex-col items-center justify-center gap-6 m-10">
       {showResult ?
         <ResultLayout /> :
         <SetupLayout addCity={addCity} cities={cities} removeCity={removeCity} />
       }
-    </>
+    </div>
   )
 }
 

@@ -39,15 +39,18 @@ const CityInput = ({addCity}: CityInputProps) => {
   }
   
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className="flex flex-col items-center justify-center gap-3">
+      <form
+        className="p-3 outline rounded-3xl text-md bg-blue-200"
+        onSubmit={handleSubmit}>
         <input
+          className="focus:outline-0"
           type="text"
           placeholder="Add a city"
           value={city}
           onChange={handleInput}
         />
-        <button>
+        <button className="hover:cursor-pointer">
           Add
         </button>
       </form>
@@ -60,7 +63,7 @@ const CityInput = ({addCity}: CityInputProps) => {
           }}  
         />
       }
-    </>
+    </div>
   );
 }
  

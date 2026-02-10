@@ -12,6 +12,9 @@ type SetupLayoutProps = {
 const SetupLayout = ({addCity, cities, removeCity}: SetupLayoutProps) => {
   return (
     <>
+      <h2 className="text-3xl">
+        Add cities you want to compute with
+      </h2>
       <CityInput addCity={addCity} />
       <CityList cities={cities} removeCity={removeCity} />
       <WorldMap  cities={cities} />
