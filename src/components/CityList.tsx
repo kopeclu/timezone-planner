@@ -10,8 +10,10 @@ type CityListProps = {
 const CityList = ({cities, removeCity}: CityListProps) => {
   return (
     <div className="flex flex-wrap gap-3 max-w-xl">
-      {cities.map((el) => (
-        <div className="flex flex-row gap-3 bg-emerald-100 p-3 rounded-md justify-center w-fit">
+      {cities.map((el, index) => (
+        <div
+          key={el.name+index}
+          className="flex flex-row gap-3 bg-emerald-100 p-3 rounded-md justify-center w-fit">
           <span className="text-nowrap">
             {el.name}
           </span>
