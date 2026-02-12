@@ -9,19 +9,19 @@ type CityListProps = {
 
 const CityList = ({cities, removeCity}: CityListProps) => {
   return (
-    <>
+    <div className="flex flex-wrap gap-3 max-w-xl">
       {cities.map((el) => (
-        <div className="flex flex-row">
-          <span>
-            {el.name} - {el.timeZone}
+        <div className="flex flex-row gap-3 bg-emerald-100 p-3 rounded-md justify-center w-fit">
+          <span className="text-nowrap">
+            {el.name}
           </span>
           <img src={getFlagUrl(el.country)} alt="" />
-          <button onClick={() => removeCity(el)}>
+          <button onClick={() => removeCity(el)} className="cursor-pointer">
             <CloseIcon size={16} color="red" />
           </button>
         </div>
       ))}
-    </>
+    </div>
   );
 }
  

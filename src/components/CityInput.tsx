@@ -39,12 +39,12 @@ const CityInput = ({addCity}: CityInputProps) => {
   }
   
   return (
-    <div className="flex flex-col items-center justify-center gap-3">
+    <div className="flex flex-col items-center justify-center gap-1 w-lg">
       <form
-        className="p-3 outline rounded-3xl text-md bg-blue-200"
+        className="p-3 outline rounded-md text-md bg-blue-200 w-md flex flex-row"
         onSubmit={handleSubmit}>
         <input
-          className="focus:outline-0"
+          className="focus:outline-0 w-full"
           type="text"
           placeholder="Add a city"
           value={city}
