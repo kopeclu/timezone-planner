@@ -34,3 +34,16 @@ export const checkTimeValidy = (cities: CityInfo[], interval: TimeInterval, inpu
   const allGood = result.every(c => c.isValid)
   return {allGood, details: result}
 }
+
+export const roundTimeTo30 = (originalTime: string): string => {
+  const [h, m] = originalTime.split(":").map(Number)
+  const totalMinutes = h*60 + m
+  const roundedMinutes = Math.round(totalMinutes / 30) * 30;
+
+  const normalizedMinutes = roundedMinutes === 1440 ? 0 : roundedMinutes;
+
+  const newH = Math.floor(normalizedMinutes / 60).toString().padStart(2, "0");
+  const newM = (normalizedMinutes % 60).toString().padStart(2, "0");
+
+  return `${newH}:${newM}`;
+}

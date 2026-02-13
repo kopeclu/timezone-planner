@@ -1,4 +1,5 @@
 import type { TimeInterval } from "../types";
+import { roundTimeTo30 } from "../utils/timeHandler";
 
 type TimeRangeSelectorProps = {
   timeInterval: TimeInterval,
@@ -8,7 +9,9 @@ type TimeRangeSelectorProps = {
 const TimeRangeSelector = ({timeInterval, setTimeInterval}: TimeRangeSelectorProps) => {
   
   const handleInput = (start: string, end: string) => {
-    const newTimeInterval = {start: start, end: end}
+    const newStart = roundTimeTo30(start)
+    const newEnd = roundTimeTo30(end)
+    const newTimeInterval = {start: newStart, end: newEnd}
     setTimeInterval(newTimeInterval)
   }
 
@@ -21,11 +24,13 @@ const TimeRangeSelector = ({timeInterval, setTimeInterval}: TimeRangeSelectorPro
         <span>From</span>
         <input
           type="time"
+          step={1800}
           value={timeInterval.start}
           onChange={(e) => handleInput(e.target.value, timeInterval.end)} />
         <span>To</span>
         <input
           type="time"
+          step={1800}
           value={timeInterval.end}
           onChange={(e) => handleInput(timeInterval.start, e.target.value)} />
       </div>
