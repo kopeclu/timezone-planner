@@ -9,10 +9,11 @@ type SetupLayoutProps = {
   cities: CityInfo[],
   removeCity: (city: CityInfo) => void,
   timeInterval: TimeInterval,
-  setTimeInterval: (interval: TimeInterval) => void
+  setTimeInterval: (interval: TimeInterval) => void,
+  setShowResult: (status: boolean) => void
 }
 
-const SetupLayout = ({addCity, cities, removeCity, timeInterval, setTimeInterval}: SetupLayoutProps) => {
+const SetupLayout = ({addCity, cities, removeCity, timeInterval, setTimeInterval, setShowResult}: SetupLayoutProps) => {
   return (
     <>
       <h2 className="text-3xl">
@@ -23,7 +24,7 @@ const SetupLayout = ({addCity, cities, removeCity, timeInterval, setTimeInterval
       <TimeRangeSelector
         timeInterval={timeInterval}
         setTimeInterval={setTimeInterval} />
-      <button className="hover:cursor-pointer">
+      <button className="hover:cursor-pointer" onClick={() => setShowResult(true)}>
         Compute
       </button>
       <WorldMap  cities={cities} />

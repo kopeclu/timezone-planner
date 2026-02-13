@@ -23,13 +23,17 @@ function App() {
   return (
     <div className="flex flex-col items-center justify-center gap-6 m-10">
       {showResult ?
-        <ResultLayout /> :
+        <ResultLayout
+          cities={cities}
+          interval={timeInterval}
+          setShowResult={setShowResult} /> :
         <SetupLayout
           addCity={addCity}
           cities={cities}
           removeCity={removeCity}
           timeInterval={timeInterval}
-          setTimeInterval={setTimeInterval} />
+          setTimeInterval={setTimeInterval}
+          setShowResult={setShowResult} />
       }
     </div>
   )
