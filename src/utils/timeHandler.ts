@@ -1,7 +1,7 @@
 import type { CityInfo, TimeInterval } from "../types"
 import { DateTime } from 'luxon'
 
-const timeToMinutes = (time: string): number => {
+export const timeToMinutes = (time: string): number => {
   const [h, m] = time.split(":").map(Number)
   return h * 60 + m
 }
@@ -47,3 +47,9 @@ export const roundTimeTo30 = (originalTime: string): string => {
 
   return `${newH}:${newM}`;
 }
+
+export const displayTime = (time: number): string => {
+  const h = Math.floor(time / 60).toString().padStart(2, '0');
+  const m = (time % 60).toString().padStart(2, '0');
+  return `${h}:${m}`;
+};

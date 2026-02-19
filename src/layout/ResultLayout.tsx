@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { checkTimeValidy } from "../utils/timeHandler";
+import { checkTimeValidy, displayTime, timeToMinutes } from "../utils/timeHandler";
 import type { CityInfo, TimeInterval } from "../types";
+import TimeSlider from "../components/TimeSlider";
 
 type ResultLayoutProps = {
   cities: CityInfo[],
@@ -9,16 +10,23 @@ type ResultLayoutProps = {
 }
 
 const ResultLayout = ({cities, interval, setShowResult}: ResultLayoutProps) => {
-  const [sliderValue, setSliderValue] = useState("14:00");
-  const status = checkTimeValidy(cities, interval, sliderValue);
+  const [sliderValue, setSliderValue] = useState(timeToMinutes(interval.start));
+  const status = checkTimeValidy(cities, interval, displayTime(sliderValue));
+
+  const handleChangeTime = (time: number): void => {
+    setSliderValue(time)
+  }
 
   return (
     <>
       <button onClick={() => setShowResult(false)}>
         Back
       </button>
-      <input type="time" value={sliderValue} onChange={(e) => setSliderValue(e.target.value)} />
-      <span>valid: {status.allGood ? "y" : "n"}</span>
+      <TimeSlider
+        cities={cities}
+        interval={interval}
+        sliderValue={sliderValue}
+        onChange={handleChangeTime} />
       {cities.map((city, index) => {
 
         return (
