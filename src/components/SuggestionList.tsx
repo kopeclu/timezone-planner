@@ -10,17 +10,20 @@ type SuggestionListProps = {
 
 const SuggestionList = ({suggestions, onSelect, activeIndex, setActiveIndex}: SuggestionListProps) => {
   return (
-    <div className="flex flex-col gap-2 bg-amber-50 w-md">
+    <div className="w-full bg-white border border-gray-300 rounded-xl shadow-lg overflow-hidden flex flex-col">
       {suggestions.map((city, index) => (
         <div
           key={city.name+city.lat+index}
           onClick={() => onSelect(city)}
           onMouseEnter={() => setActiveIndex(index)}
-          className={`flex flex-row gap-2 cursor-pointer p-3 ${activeIndex === index ? "bg-gray-300" : "hover:bg-gray-100"}`}>
+          className={`flex flex-row items-center justify-between px-4 py-3 cursor-pointer border-b border-gray-100 last:border-b-0 transition-colors ${
+            activeIndex === index ? "bg-gray-100 text-gray-900" : "bg-white text-gray-600 hover:bg-gray-50"
+          }`}>
           <span>
-            {city.name} - {city.country}
+            <span className="font-medium">{city.name}</span>
+            <span className="text-gray-400"> - {city.country}</span>
           </span>
-          <img src={getFlagUrl(city.country)} alt="flag" />
+          <img src={getFlagUrl(city.country)} alt="flag" className="shadow-md rounded-sm" />
         </div>
       ))}
     </div>

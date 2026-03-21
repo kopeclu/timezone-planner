@@ -58,19 +58,19 @@ const CityInput = ({addCity}: CityInputProps) => {
   }
   
   return (
-    <div className="flex flex-col items-center justify-center gap-1 w-lg">
+    <div className="flex flex-col items-center justify-center gap-1 w-full max-w-md">
       <form
-        className="p-3 outline rounded-md text-md bg-blue-200 w-md flex flex-row"
+        className="flex flex-row w-full max-w-md bg-white border border-gray-300 rounded-xl overflow-hidden shadow-sm focus-within:ring-2 focus-within:ring-gray-200 transition-all"
         onSubmit={handleSubmit}>
         <input
-          className="focus:outline-0 w-full"
+          className="w-full px-4 py-2 bg-transparent text-gray-800 placeholder-gray-400 focus:outline-none"
           type="text"
           placeholder="Add a city"
           value={city}
           onChange={handleInput}
           onKeyDown={handleKeyDown}
         />
-        <button className="hover:cursor-pointer">
+        <button className="px-5 py-2 bg-gray-200 hover:bg-gray-300 active:bg-gray-400 transition-colors duration-200 cursor-pointer text-gray-800 font-medium border-l border-gray-300">
           Add
         </button>
       </form>
