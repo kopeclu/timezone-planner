@@ -53,3 +53,18 @@ export const displayTime = (time: number): string => {
   const m = (time % 60).toString().padStart(2, '0');
   return `${h}:${m}`;
 };
+
+export const getFirstAvailableTime = (cities: CityInfo[], interval: TimeInterval): number => {
+  if (!cities || cities.length === 0) return 720;
+
+  for (let i = 0; i < 1440; i += 30) {
+    const h = Math.floor(i / 60).toString().padStart(2, '0');
+    const m = (i % 60).toString().padStart(2, '0');
+    
+    const { allGood } = checkTimeValidy(cities, interval, `${h}:${m}`);
+    
+    if (allGood) return i; // Return the minutes
+  }
+
+  return 720; // Fallback if no time works
+};
