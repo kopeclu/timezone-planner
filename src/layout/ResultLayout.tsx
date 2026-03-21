@@ -11,6 +11,7 @@ type ResultLayoutProps = {
 }
 
 const ResultLayout = ({cities, interval, setShowResult}: ResultLayoutProps) => {
+  const [freeSlotFound, setFreeSlotfound] = useState(false);
   const [sliderValue, setSliderValue] = useState(timeToMinutes(interval.start));
   const status = checkTimeValidy(cities, interval, displayTime(sliderValue));
 
@@ -19,8 +20,9 @@ const ResultLayout = ({cities, interval, setShowResult}: ResultLayoutProps) => {
   }
 
   useEffect(() => {
-    const firstAvailable = getFirstAvailableTime(cities, interval);
-    setSliderValue(firstAvailable); 
+    const {time, success} = getFirstAvailableTime(cities, interval);
+    setSliderValue(time);
+    setFreeSlotfound(success);
   }, [cities, interval]);
 
   return (
@@ -28,9 +30,13 @@ const ResultLayout = ({cities, interval, setShowResult}: ResultLayoutProps) => {
       <button onClick={() => setShowResult(false)}>
         Back
       </button>
-      {/* Add a message if we found a free slot */}
       {
-        status.allGood ?
+        freeSlotFound ?
+        <p>There is a free slot!</p> :
+        <p>There is unfortunately no free slot.</p>
+      }
+      {
+        status.allGood && freeSlotFound ?
         <p>That's a free slot!</p> :
         <p>That's not a free slot.</p>
       }
