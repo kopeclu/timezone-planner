@@ -21,7 +21,7 @@ const TimeRangeSelector = ({timeInterval, setTimeInterval}: TimeRangeSelectorPro
         Preferred time for meeting:
       </legend>
       
-      <div className="flex flex-row items-center gap-5">
+      <div className="flex flex-col sm:flex-row items-center gap-5 md:gap-4">
         <label className="flex flex-row items-center gap-2 cursor-pointer">
           <span className="text-gray-600">From</span>
           <input
